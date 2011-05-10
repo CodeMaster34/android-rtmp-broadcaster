@@ -12,28 +12,34 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.Window;
+import android.widget.FrameLayout;
 
 public class AndroidRTMPBroadcaster extends Activity {
 
 	private static final String _LOG_TAG = "main-activity";
   
 	private Preview _preview;
+	public static FrameLayout previewFrame;
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		
+	  
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		
 		//setContentView(R.layout.main);
 		Log.d(_LOG_TAG, "AndroidRTMPBroadcaster onCreate()");
 		
     // Hide the window title.
-    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    //requestWindowFeature(Window.FEATURE_NO_TITLE);
+    
+    previewFrame = (FrameLayout) findViewById(R.id.preview);
     
     // Create our Preview view and set it as the content of our activity.
     _preview = new Preview(this);
-    setContentView(_preview);
-		
+    previewFrame.addView(_preview);
+    
 	}
 }
 
