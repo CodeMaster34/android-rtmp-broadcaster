@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.Window;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 public class AndroidRTMPBroadcaster extends Activity {
@@ -40,7 +42,20 @@ public class AndroidRTMPBroadcaster extends Activity {
     _preview = new Preview(this);
     previewFrame.addView(_preview);
     
+    // Capture our button from layout
+    Button button = (Button)findViewById(R.id.buttonClick);
+    // Register the onClick listener with the implementation above
+    button.setOnClickListener(buttonListener);
+    
 	}
+	
+  //Create an anonymous implementation of OnClickListener
+	private OnClickListener buttonListener = new OnClickListener() {
+	    public void onClick(View v) {
+	      Log.d(_LOG_TAG, "button clicked");
+	    }
+	};
+	
 }
 
 // ----------------------------------------------------------------------
